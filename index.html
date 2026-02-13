@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprise For You!</title>
+    <style>
+        :root { --primary: #db2777; --bg: #fff1f2; }
+        body { margin: 0; background: var(--bg); font-family: 'Segoe UI', sans-serif; overflow-x: hidden; }
+        
+        .container { 
+            display: flex; flex-direction: column; align-items: center; 
+            padding: 20px; min-height: 100vh;
+        }
+
+        .card {
+            background: white; padding: 2rem; border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            text-align: center; max-width: 500px; width: 100%;
+            border: 1px solid #fbcfe8; z-index: 5;
+        }
+
+        /* Galeri Foto Sederhana */
+        .gallery {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 10px; margin: 20px 0;
+        }
+        .gallery img {
+            width: 100%; aspect-ratio: 1; object-fit: cover;
+            border-radius: 8px; border: 2px solid var(--bg);
+        }
+
+        /* Spotify Wrapper */
+        .spotify-container { margin-top: 20px; border-radius: 12px; overflow: hidden; }
+
+        .btn {
+            background: var(--primary); color: white; border: none;
+            padding: 15px 30px; border-radius: 50px; cursor: pointer;
+            font-weight: bold; font-size: 1rem;
+        }
+
+        #surprise-area { display: none; }
+
+        /* Animasi Balon */
+        .balloon {
+            position: absolute; bottom: -100px; width: 40px; height: 55px;
+            border-radius: 50%; animation: float 6s infinite linear; opacity: 0.6;
+        }
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-120vh) rotate(30deg); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="card">
+        <div id="intro">
+            <h1>Halo [Nama Dia]! ✨</h1>
+            <p>Sistem mendeteksi hari ini adalah hari spesialmu.</p>
+            <button class="btn" onclick="startSurprise()">Initialize Surprise.exe</button>
+        </div>
+
+        <div id="surprise-area">
+            <h1>Happy Birthday! 🎂</h1>
+            
+            <div class="gallery">
+                <img src="https://via.placeholder.com/150" alt="Momen 1">
+                <img src="https://via.placeholder.com/150" alt="Momen 2">
+                <img src="https://via.placeholder.com/150" alt="Momen 3">
+            </div>
+
+            <p style="font-style: italic; color: #be185d;">
+                "Semoga kodenya selalu clean, hidupnya jarang bug, dan hatinya selalu full-disk dengan kebahagiaan."
+            </p>
+
+            <div class="spotify-container">
+                <iframe src="https://open.spotify.com/embed/track/6UeS06Inu3T2MvCXvZ6T0z?utm_source=generator" 
+                width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function startSurprise() {
+        document.getElementById('intro').style.display = 'none';
+        document.getElementById('surprise-area').style.display = 'block';
+        setInterval(createBalloon, 400);
+    }
+
+    function createBalloon() {
+        const b = document.createElement('div');
+        b.className = 'balloon';
+        b.style.left = Math.random() * 100 + 'vw';
+        b.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 75%)`;
+        b.style.animationDuration = (Math.random() * 2 + 4) + 's';
+        document.body.appendChild(b);
+        setTimeout(() => b.remove(), 7000);
+    }
+</script>
+
+</body>
+</html>
+
